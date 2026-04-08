@@ -1,6 +1,6 @@
 # 💻 TechScout — Remote Tech Job Finder
 
-Welcome to **TechScout** — a web application built to make remote tech job searching easier, cleaner and more organized. 🚀
+Welcome to **TechScout** — a web application built to make remote tech job searching easier, cleaner, and more organized. 🚀
 
 Instead of going through multiple websites and scattered listings, TechScout brings remote tech opportunities into one simple interface where users can search, filter, and explore jobs more efficiently.
 
@@ -22,14 +22,14 @@ This project will also demonstrate important web development concepts such as:
 
 ## 🌐 API Used
 
-This project uses the **Himalayas Jobs API** to fetch remote job listings.
+This project uses the **Arbeitnow Job Board API** to fetch remote job listings.
 
 The API provides job-related information such as:
 - job title
 - company name
-- category
-- location / remote status
-- description
+- location
+- tags / categories
+- job description
 - application link
 
 ---
@@ -39,8 +39,8 @@ The API provides job-related information such as:
 TechScout will include the following features:
 
 - 🔍 **Search jobs** by keyword
-- 🧩 **Filter jobs** based on relevant categories
-- ↕️ **Sort job listings** by title, company, or other criteria
+- 🧩 **Filter jobs** based on relevant categories or location
+- ↕️ **Sort job listings** by title or other criteria
 - 💼 **Display fetched jobs dynamically** in a clean card layout
 - ⏳ **Loading state** while data is being fetched
 - ⚠️ **Basic error handling** for failed API requests
@@ -68,10 +68,10 @@ This project is designed to demonstrate:
 - API integration using `fetch()`
 - Event handling
 - Array higher-order functions such as:
-  - `map()`
+  - `forEach()`
   - `filter()`
   - `sort()`
-  - `find()`
+  - `map()`
 - Responsive web design
 
 ---
