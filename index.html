@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechScout - Remote Tech Job Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>TechScout</h1>
+    </header>
+
+    <section class="controls">
+      <input type="text" id="searchInput" placeholder="Search job title...">
+      <button id="searchBtn">Search</button>
+    </section>
+
+    <div id="loading" class="loading hidden">Loading jobs...</div>
+    <div id="error" class="error hidden">Something went wrong while fetching jobs.</div>
+
+    <div id="jobs" class="jobs-container"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa, #dbeafe);
+  min-height: 100vh;
+  padding: 30px 15px;
+  color: #222;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.7rem;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.controls input,
+.controls button {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+.controls input {
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.controls button {
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.controls button:hover {
+  background-color: #1d4ed8;
+}
+
+.loading,
+.error {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.jobs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+.job-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+.job-card h3 {
+  color: #1e3a8a;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.job-card p {
+  margin-bottom: 10px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.job-card a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  background: #10b981;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.job-card a:hover {
+  background: #059669;
+}
+
+.no-jobs {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .controls input,
+  .controls button {
+    width: 100%;
+    max-width: 350px;
+  }
+}
