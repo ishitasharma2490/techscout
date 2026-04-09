@@ -1,6 +1,10 @@
 const jobsContainer = document.getElementById("jobs");
 const loading = document.getElementById("loading");
 const error = document.getElementById("error");
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+
+let allJobs = [];
 
 async function fetchJobs() {
   loading.classList.remove("hidden");
@@ -11,8 +15,8 @@ async function fetchJobs() {
     const response = await fetch("https://www.arbeitnow.com/api/job-board-api");
     const data = await response.json();
 
-    const jobs = data.data || [];
-    displayJobs(jobs);
+    allJobs = data.data || [];
+    displayJobs(allJobs);
   } catch (err) {
     error.classList.remove("hidden");
     console.error(err);
@@ -40,5 +44,23 @@ function displayJobs(jobs) {
     `;
   });
 }
+
+function searchJobs() {
+  const searchText = searchInput.value.toLowerCase();
+
+  const filteredJobs = allJobs.filter(job =>
+    job.title.toLowerCase().includes(searchText)
+  );
+
+  displayJobs(filteredJobs);
+}
+
+searchBtn.addEventListener("click", searchJobs);
+
+searchInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    searchJobs();
+  }
+});
 
 fetchJobs();
