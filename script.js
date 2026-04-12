@@ -5,13 +5,13 @@ const error = document.getElementById("error");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const sortSelect = document.getElementById("sortSelect");
+const themeToggle = document.getElementById("themeToggle");
 
 let allJobs = [];
 
 async function fetchJobs() {
   loading.classList.remove("hidden");
   error.classList.add("hidden");
-  jobsContainer.innerHTML = "";
 
   try {
     const res = await fetch("https://www.arbeitnow.com/api/job-board-api");
@@ -52,7 +52,9 @@ function applyFilters() {
   const text = searchInput.value.toLowerCase();
   const sort = sortSelect.value;
 
-  jobs = jobs.filter(j => j.title.toLowerCase().includes(text));
+  if (text) {
+    jobs = jobs.filter(j => j.title.toLowerCase().includes(text));
+  }
 
   if (sort === "az") {
     jobs.sort((a, b) => a.title.localeCompare(b.title));
@@ -64,11 +66,14 @@ function applyFilters() {
 }
 
 searchBtn.addEventListener("click", applyFilters);
-
-searchInput.addEventListener("keypress", e => {
-  if (e.key === "Enter") applyFilters();
-});
-
+searchInput.addEventListener("input", applyFilters);
 sortSelect.addEventListener("change", applyFilters);
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  themeToggle.innerText = document.body.classList.contains("dark")
+    ? "Light Mode"
+    : "Dark Mode";
+});
 
 fetchJobs();
