@@ -1,8 +1,10 @@
 const jobsContainer = document.getElementById("jobs");
 const loading = document.getElementById("loading");
 const error = document.getElementById("error");
+
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
+const sortSelect = document.getElementById("sortSelect");
 
 let allJobs = [];
 
@@ -12,14 +14,13 @@ async function fetchJobs() {
   jobsContainer.innerHTML = "";
 
   try {
-    const response = await fetch("https://www.arbeitnow.com/api/job-board-api");
-    const data = await response.json();
+    const res = await fetch("https://www.arbeitnow.com/api/job-board-api");
+    const data = await res.json();
 
     allJobs = data.data || [];
     displayJobs(allJobs);
-  } catch (err) {
+  } catch (e) {
     error.classList.remove("hidden");
-    console.error(err);
   } finally {
     loading.classList.add("hidden");
   }
@@ -29,7 +30,7 @@ function displayJobs(jobs) {
   jobsContainer.innerHTML = "";
 
   if (jobs.length === 0) {
-    jobsContainer.innerHTML = `<p class="no-jobs">No jobs found.</p>`;
+    jobsContainer.innerHTML = "<p class='no-jobs'>No jobs found</p>";
     return;
   }
 
@@ -37,30 +38,37 @@ function displayJobs(jobs) {
     jobsContainer.innerHTML += `
       <div class="job-card">
         <h3>${job.title || "No Title"}</h3>
-        <p><strong>Company:</strong> ${job.company_name || "Not Available"}</p>
-        <p><strong>Location:</strong> ${job.location || "Remote"}</p>
+        <p>${job.company_name || "Unknown Company"}</p>
+        <p>${job.location || "Remote"}</p>
         <a href="${job.url}" target="_blank">View Job</a>
       </div>
     `;
   });
 }
 
-function searchJobs() {
-  const searchText = searchInput.value.toLowerCase();
+function applyFilters() {
+  let jobs = [...allJobs];
 
-  const filteredJobs = allJobs.filter(job =>
-    job.title.toLowerCase().includes(searchText)
-  );
+  const text = searchInput.value.toLowerCase();
+  const sort = sortSelect.value;
 
-  displayJobs(filteredJobs);
+  jobs = jobs.filter(j => j.title.toLowerCase().includes(text));
+
+  if (sort === "az") {
+    jobs.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sort === "za") {
+    jobs.sort((a, b) => b.title.localeCompare(a.title));
+  }
+
+  displayJobs(jobs);
 }
 
-searchBtn.addEventListener("click", searchJobs);
+searchBtn.addEventListener("click", applyFilters);
 
-searchInput.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    searchJobs();
-  }
+searchInput.addEventListener("keypress", e => {
+  if (e.key === "Enter") applyFilters();
 });
+
+sortSelect.addEventListener("change", applyFilters);
 
 fetchJobs();

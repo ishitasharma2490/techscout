@@ -6,8 +6,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #f5f7fa, #dbeafe);
-  min-height: 100vh;
+  background: #f5f7fa; /* simple solid color */
   padding: 30px 15px;
   color: #222;
 }
@@ -41,20 +40,33 @@ header p {
   flex-wrap: wrap;
 }
 
+/* COMMON STYLING */
 .controls input,
+.controls select,
 .controls button {
   padding: 12px 15px;
-  border: none;
   border-radius: 10px;
   font-size: 15px;
   outline: none;
+  border: none;
 }
 
+/* INPUT */
 .controls input {
   width: 280px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+/* SMALLER SORT DROPDOWN */
+.controls select {
+  width: 140px; /* reduced size */
+  background: white;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* BUTTON */
 .controls button {
   background-color: #2563eb;
   color: white;
@@ -137,6 +149,7 @@ header p {
   }
 
   .controls input,
+  .controls select,
   .controls button {
     width: 100%;
     max-width: 350px;

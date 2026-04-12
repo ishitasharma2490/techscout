@@ -11,10 +11,18 @@
   <div class="container">
     <header>
       <h1>TechScout</h1>
+      <p>Find remote tech jobs easily using a public API</p>
     </header>
 
     <section class="controls">
       <input type="text" id="searchInput" placeholder="Search job title...">
+
+      <select id="sortSelect">
+        <option value="default">Sort By</option>
+        <option value="az">Title A-Z</option>
+        <option value="za">Title Z-A</option>
+      </select>
+
       <button id="searchBtn">Search</button>
     </section>
 
